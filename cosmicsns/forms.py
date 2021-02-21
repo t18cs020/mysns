@@ -15,7 +15,7 @@ class RegisterForm(UserCreationForm):
     # 入力を必須にするため、required=Trueで上書き
     email = forms.EmailField(required=True)
     username = forms.CharField(required=True)
- 
+
     class Meta:
         model = User
  

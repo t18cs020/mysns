@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
-    icon = models.ImageField(upload_to='profiles/',blank=True, null=True)
+    icon = models.ImageField(upload_to='profiles',blank=True, null=True)
 
 class Posts(models.Model):
     message = models.CharField(max_length=200)

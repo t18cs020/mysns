@@ -168,7 +168,7 @@
 	{% for item in object_list %}
 		<tr>
 			<td scope="row">{{ item.author.username }}</td>
-			<td scope="row"><img src="{{ item.author.icon }}" class="user-icon"></td>
+			<td scope="row"><img src="{{ item.author.icon.url }}" class="user-icon"></td>
 			<td>{{ item.message }}</td>
 			<td>{{ item.postedtime }}</td>
 		</tr>
