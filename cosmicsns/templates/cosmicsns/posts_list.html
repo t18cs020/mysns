@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block title %} Club House {% endblock %}
+{% block main %}
+  <style type="text/css">
+ h1{
+    padding: 1.5rem;
+    color: #111;
+    background: #01e4e9;
+    -webkit-boxshadow: 5px 5px 0 #00a4e9;
+    box-shadow: 5px 5px 0 #00a4e9;
+    text-align: center;
+    text-shadow: 2px 2px 3px #ffffff;
+ }
+ .border_spread_btn {
+    position: relative;
+    display: inline-block;
+    color: #1B1B1B;
+    text-decoration: none;
+ }
+ .border_spread_btn:hover {
+    cursor: pointer;
+    text-decoration: none;
+ }
+ .border_spread_btn::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #333;
+    transform: scale(0.5, 1);
+    transform-origin: center top;
+    transition: transform .3s;
+ }
+ .border_spread_btn:hover::after {
+    transform: scale(1, 1);
+ }
+
+         body{
+          background: #dcdcdc;
+        }
+    
+        .boxes {
+          margin: auto;
+          padding: 5px;
+          background: #dcdcdc;
+        }
+    
+        table{
+          text-align: center;
+          border-collapse: collapse;
+        } 
+        table td, table th{
+          border: solid 1px black;
+        }
+    
+        /*Checkboxes styles*/
+        input[type="checkbox"] { display: none; }
+
+        input[type="checkbox"] + label {
+          position: relative;
+          padding-left: 21px;
+          padding-right: 20px;
+          margin-bottom: 20px;
+          font: 14px/20px 'Open Sans', Arial, sans-serif;
+          color: #000;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+        }
+
+        input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+        input[type="checkbox"] + label:before {
+          content: '';
+          width: 20px;
+          height: 20px;
+          border: 1px solid #0066ff;//#6cc0e5;
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: .6;
+          -webkit-transition: all .12s, border-color .08s;
+          transition: all .12s, border-color .08s;
+        }
+
+        input[type="checkbox"]:checked + label:before {
+          width: 10px;
+          top: -5px;
+          left: 5px;
+          border-radius: 0;
+          opacity: 1;
+          border-top-color: transparent;
+          border-left-color: transparent;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        input[type="text"]:focus {
+          background-color: #ffffe0;
+        }
+
+        input[type="date"]:focus {
+          background-color: #ffffe0;
+        }
+
+      button.btn--white {
+			color: #fff;
+			background-color: #bccccc;
+			border-bottom: 5px solid #000000;
+		}
+		button.btn--white:hover {
+			margin-top: 3px;
+			color: #fff;
+			background: #bbbbbb;
+			border-bottom: 2px solid #000000;
+		}
+		button.btn--shadow {
+			-webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+			box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+		}
+	  table{
+	     text-align: center;
+	     border-collapse: collapse;
+	  } 
+	  table td{
+	     border: solid 1px black;
+	     background: snow;
+	  }
+	  table th{
+	     border: solid 1px black;
+	  }
+		.mgr-200{
+		    margin-right : 200px;
+		}
+		.mgr-120{
+		    margin-right : 120px;
+		}
+		.mgr-40{
+		    margin-right : 40px;
+		}
+    
+      .username{
+        text-align: center;
+        }
+        
+        .user-icon {
+	    height: 80px;
+    	width: 80px;
+    	object-fit: cover;
+    	border-radius: 50%;
+    	border: 1.5px solid #eee;
+		}
+	</style>
+
+ <p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">投稿する</a></p>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th>ユーザー</th>
+			<th></th>
+			<th>投稿</th>
+			<th>投稿日時</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for item in object_list %}
+		<tr>
+			<td scope="row">{{ item.author.username }}</td>
+			<td scope="row"><img src="{{ item.author.icon }}" class="user-icon"></td>
+			<td>{{ item.message }}</td>
+			<td>{{ item.postedtime }}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+ <p align="right"><a href="{% url 'cosmicsns:logout' %}" class="border_spread_btn">ログアウト</a></p>
+{% endblock %}

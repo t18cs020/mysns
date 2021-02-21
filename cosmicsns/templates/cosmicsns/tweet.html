@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %} 投稿する {% endblock %}
+ 
+{% block main %}
+  <style>
+  body{
+     background: #dcdcdc;        
+  }
+  textarea{
+     resize: none;
+  }
+  h1{
+     padding: 1.5rem;
+     color: #111;
+     background: #01e4e9;
+     -webkit-boxshadow: 5px 5px 0 #00a4e9;
+     box-shadow: 5px 5px 0 #00a4e9;
+     text-align: center;
+     text-shadow: 2px 2px 3px #ffffff;
+  }
+
+      button.btn--white {
+			color: #fff;
+			background-color: #bccccc;
+			border-bottom: 5px solid #000000;
+		}
+		button.btn--white:hover {
+			margin-top: 3px;
+			color: #fff;
+			background: #bbbbbb;
+			border-bottom: 2px solid #000000;
+		}
+		button.btn--shadow {
+			-webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+			box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+		}
+  input:focus {
+   background-color: #ffffe0;
+  }
+
+  textarea:focus {
+   background-color: #ffffe0;
+  }
+
+ </style>
+ <form action="{% url 'cosmicsns:tweet' %}" method="post">
+  {% csrf_token %}
+
+
+ <h1>問い合わせ入力フォーム</h1>
+ <p>　以下のフォームに問い合わせ内容を入力してください</p>
+ <button type="reset" class="btn btn--white btn--cubic btn--shadow" >リセット</button>
+
+ <table>
+    <tr>
+     <th>投稿内容</th>
+     <td><textarea name="message" cols="20" rows="10" placeholder="200文字以内"  required></textarea></td>
+    </tr>
+
+ </table>
+ <button type="submit" class="btn btn--white btn--cubic btn--shadow">送信する</button>
+ </form>
+{% endblock %}
