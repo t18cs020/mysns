@@ -21,7 +21,7 @@ class RegisterForm(UserCreationForm):
  
         fields = (
             "email", "password1", "password2", 
-            "username",,
+            "username",
             )
  
     def __init__(self, *args, **kwargs):
