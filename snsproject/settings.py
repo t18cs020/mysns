@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,9 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '_4fkk0-h1^43rwjl#cdra&kf!z$mw6orm5$i#0$joi01wn$ll_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -47,7 +48,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'snsproject.urls'
@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'snsproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'name',
-        'USER': 'user',
-        'PASSWORD': '',
-        'HOST': 'host',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -120,33 +116,18 @@ USE_L10N = True
 
 USE_TZ = True
 
-#debug
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-#追加
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
 
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    import django_heroku #追加
-    django_heroku.settings(locals()) #追加
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR , 'static')
-"""STATICFILES_DIRS = (
+#STATIC_ROOT = os.path.join(BASE_DIR , 'static')
+STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
-        )"""
+        )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 #ログイン機能
 LOGIN_URL = 'cosmicsns:login'
 LOGIN_REDIRECT_URL = 'cosmicsns:list'
