@@ -159,6 +159,12 @@
     	border-radius: 50%;
     	border: 1.5px solid #eee;
 		}
+		textarea{
+    	 resize: none;
+ 		 }
+ 		 textarea:focus {
+	   		background-color: #ffffe0;
+		  }
 	</style>
 <br>	
 <p style="font-size:30px;text-align:center;" >現在
@@ -190,7 +196,7 @@
 			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon">
 			{% endif %}
 			</td>
-			<td>{{ item.message }}</td>
+			<td><textarea cols="30" rows="4" readonly>{{ item.message }}</textarea></td>
 			<td>{{ item.postedtime }}</td>
 		</tr>
 	{% endfor %}
