@@ -21,7 +21,7 @@ class RegisterForm(UserCreationForm):
  
         fields = (
             "email", "password1", "password2", 
-            "username",
+            "username","introduce",
             )
  
     def __init__(self, *args, **kwargs):
@@ -41,4 +41,7 @@ class RegisterForm(UserCreationForm):
   
         self.fields['password2'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['placeholder'] = 'パスワード（確認）'
+        
+        self.fields['introduce'].widget.attrs['class'] = 'form-control'
+        self.fields['introduce'].widget.attrs['placeholder'] = '自己紹介文'
 
