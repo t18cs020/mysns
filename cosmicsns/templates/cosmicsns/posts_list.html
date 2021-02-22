@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} Club House {% endblock %}
 {% block main %}
   <style type="text/css">
@@ -158,9 +159,21 @@
     	border-radius: 50%;
     	border: 1.5px solid #eee;
 		}
+		textarea{
+    	 resize: none;
+ 		 }
+ 		 textarea:focus {
+	   		background-color: #ffffe0;
+		  }
 	</style>
 <br>	
-<p style="font-size:30px;text-align:center;" >現在<img src="{{ user.icon.url }}" class="user-miniicon"><span style="font-style: italic">{{ user.username }}</span> としてログインしています</p>
+<p style="font-size:30px;text-align:center;" >現在
+			{% if item.author.icon %}
+			<img src="{{ item.author.icon.url }}" class="user-icon">
+			{% else %}
+			<img src="{% static 'images/mikiko.jpg' %}" class="user-miniicon">
+			{% endif%}
+			<span style="font-style: italic">{{ user.username }}</span> としてログインしています</p>
 <br>
  <p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">投稿する</a></p>
 <table class="table">
@@ -176,8 +189,14 @@
 	{% for item in object_list %}
 		<tr>
 			<td scope="row">{{ item.author.username }}</td>
-			<td scope="row"><a href="{% url 'cosmicsns:userinfo' item.author.pk %}"><img src="{{ item.author.icon.url }}" class="user-icon"></td>
-			<td>{{ item.message }}</td>
+			<td scope="row"><a href="{% url 'cosmicsns:userinfo' item.author.pk %}">
+			{% if item.author.icon %}
+			<img src="{{ item.author.icon.url }}" class="user-icon">
+			{% else %}
+			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon">
+			{% endif %}
+			</td>
+			<td><textarea cols="30" rows="4" readonly>{{ item.message }}</textarea></td>
 			<td>{{ item.postedtime }}</td>
 		</tr>
 	{% endfor %}
