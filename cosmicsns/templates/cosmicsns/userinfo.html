@@ -143,45 +143,33 @@
     
       .username{
         text-align: center;
+        font-size: 100px; 
+            display: inline;
         }
-        .user-miniicon {
-	    height: 40px;
-    	width: 40px;
-    	object-fit: cover;
-    	border-radius: 50%;
-    	border: 1.5px solid #eee;
-		}        
+        
         .user-icon {
 	    height: 80px;
     	width: 80px;
     	object-fit: cover;
     	border-radius: 50%;
     	border: 1.5px solid #eee;
+    	display: inline;
 		}
+		
+		.userintro{
+        font-size: 20px;
+        text-align: center;
+        }
+        
+		.back{
+        font-size: 50px; 
+        }
 	</style>
-<br>	
-<p style="font-size:30px;text-align:center;" >現在<img src="{{ user.icon.url }}" class="user-miniicon"><span style="font-style: italic">{{ user.username }}</span> としてログインしています</p>
-<br>
- <p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">投稿する</a></p>
-<table class="table">
-	<thead class="thead-dark">
-		<tr>
-			<th>ユーザー</th>
-			<th></th>
-			<th>投稿</th>
-			<th>投稿日時</th>
-		</tr>
-	</thead>
-	<tbody>
-	{% for item in object_list %}
-		<tr>
-			<td scope="row">{{ item.author.username }}</td>
-			<td scope="row"><a href="{% url 'cosmicsns:userinfo' item.author.pk %}"><img src="{{ item.author.icon.url }}" class="user-icon"></td>
-			<td>{{ item.message }}</td>
-			<td>{{ item.postedtime }}</td>
-		</tr>
-	{% endfor %}
-	</tbody>
+	<p class="back"><a href="{% url 'cosmicsns:list' %}">←</a></p>
+ 	<p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">投稿する</a></p>
+	<div class="user-icon"><img src="{{ user.icon.url }}"></div>
+	<div class="username">{{ user.username }}</div>
+	<div class="userintro">{{ user.introduce }}</div>
 </table>
  <p align="right"><a href="{% url 'cosmicsns:logout' %}" class="border_spread_btn">ログアウト</a></p>
 {% endblock %}

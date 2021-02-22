@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404
@@ -27,6 +27,10 @@ class TweetView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class UserInfoView(LoginRequiredMixin,DetailView):
+    model = User
+    template_name = "cosmicsns/userinfo.html"
     
 class LoginView(LoginView):
     form_class = forms.LoginForm

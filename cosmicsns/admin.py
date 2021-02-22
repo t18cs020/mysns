@@ -8,7 +8,7 @@ admin.site.register(Posts)
 
 class UserAdmin(admin.ModelAdmin):
     model = User
-    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('icon',)}),)
-    list_display = ['username', 'email', 'icon']
+    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('icon','introduce')}),)
+    list_display = ['username', 'email', 'icon','introduce']
     
 admin.site.register(User, UserAdmin)
