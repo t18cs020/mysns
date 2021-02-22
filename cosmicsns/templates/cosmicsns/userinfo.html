@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} Club House {% endblock %}
 {% block main %}
   <style type="text/css">
@@ -148,8 +149,8 @@
         }
         
         .user-icon {
-	    height: 80px;
-    	width: 80px;
+	    height: 150px;
+    	width: 150px;
     	object-fit: cover;
     	border-radius: 50%;
     	border: 1.5px solid #eee;
@@ -167,9 +168,18 @@
 	</style>
 	<p class="back"><a href="{% url 'cosmicsns:list' %}">←</a></p>
  	<p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">投稿する</a></p>
-	<div class="user-icon"><img src="{{ user.icon.url }}"></div>
+	<div class="user-icon">
+			{% if user.icon %}
+			<img src="{{ user.icon.url }}" class="user-icon">
+			{% else %}
+			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon">
+			{% endif %}
+	</div>
 	<div class="username">{{ user.username }}</div>
+	{% if user.introduce %}
 	<div class="userintro">{{ user.introduce }}</div>
+	{% endif %}
+	
 </table>
  <p align="right"><a href="{% url 'cosmicsns:logout' %}" class="border_spread_btn">ログアウト</a></p>
 {% endblock %}
