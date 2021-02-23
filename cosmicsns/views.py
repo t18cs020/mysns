@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404
@@ -31,6 +31,12 @@ class TweetView(CreateView):
 class UserInfoView(LoginRequiredMixin,DetailView):
     model = User
     template_name = "cosmicsns/userinfo.html"
+    
+class UserEditView(LoginRequiredMixin,UpdateView):
+    model = User
+    template_name = "cosmicsns/user_edit.html"
+    fields = ('username', 'introduce', 'icon')
+    success_url = reverse_lazy("cosmicsns:list")
     
 class LoginView(LoginView):
     form_class = forms.LoginForm

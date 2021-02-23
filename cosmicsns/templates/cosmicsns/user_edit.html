@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %} Club House {% endblock %}
+{% block main %}
+<head>
+    <title>ユーザー情報変更</title>
+    <style type="text/css">
+    
+    textarea {
+ 		 resize: none;
+	}
+    body{
+       background: #dcdcdc;
+    }
+    .client_info textarea {
+       border: 2px solid #0a0;  /* 枠線 */
+       border-radius: 0.67em;   /* 角丸 */
+       padding: 0.5em;          /* 内側の余白量 */
+       background-color: snow;  /* 背景色 */
+    }
+    .client_info textarea:focus {
+       background-color: #ffffe0;
+    }
+    .inquiry_type {
+       background: snow;
+    }
+    .border_spread_btn {
+       position: relative;
+       display: inline-block;
+       color: #1B1B1B;
+       text-decoration: none;
+    }
+    .border_spread_btn:hover {
+       cursor: pointer;
+       text-decoration: none;
+    }
+    .border_spread_btn::after {
+       position: absolute;
+       bottom: -4px;
+       left: 0;
+       content: '';
+       width: 100%;
+       height: 2px;
+       background: #333;
+       transform: scale(0.5, 1);
+       transform-origin: center top;
+       transition: transform .3s;
+    }
+    .border_spread_btn:hover::after {
+       transform: scale(1, 1);
+    }
+    #complete_button{
+		visibility: hidden;
+	}
+	#send_button{
+		visibility: hidden;
+	}
+      button.btn--white {
+			color: #fff;
+			background-color: #bccccc;
+			border-bottom: 5px solid #000000;
+		}
+		button.btn--white:hover {
+			margin-top: 3px;
+			color: #fff;
+			background: #bbbbbb;
+			border-bottom: 2px solid #000000;
+		}
+		button.btn--shadow {
+			-webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+			box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+		}
+	</style>
+</head>
+
+ <h3>ユーザー情報変更画面</h3>
+ <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+        {{ form.as_p }}
+    <p><input type="submit"/></p>
+ </form>
+<ul>
+<li><a href="{% url 'cosmicsns:list' %}">一覧へ戻る</a></li>
+</ul>
+ 
+{% endblock %}
