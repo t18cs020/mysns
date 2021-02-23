@@ -165,6 +165,10 @@
  		 textarea:focus {
 	   		background-color: #ffffe0;
 		  }
+		  td,textarea {
+		    margin: 0;
+		    padding: 0;
+			}
 	</style>
 <br>	
 <p style="font-size:30px;text-align:center;" >現在
@@ -189,7 +193,14 @@
 	{% for item in object_list %}
 		<tr>
 			<td scope="row">{{ item.author.username }}</td>
-			<td scope="row"><a href="{% url 'cosmicsns:userinfo' item.author.pk %}">
+			<td scope="row">
+			
+			{% if item.author.username == user.username %}
+			<a href="{% url 'cosmicsns:useredit' item.author.pk %}">
+			{% else %}
+			<a href="{% url 'cosmicsns:userinfo' item.author.pk %}">
+			{% endif %}
+			
 			{% if item.author.icon %}
 			<img src="{{ item.author.icon.url }}" class="user-icon">
 			{% else %}
