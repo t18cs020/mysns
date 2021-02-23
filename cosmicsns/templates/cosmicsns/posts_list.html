@@ -168,8 +168,8 @@
 	</style>
 <br>	
 <p style="font-size:30px;text-align:center;" >現在
-			{% if item.author.icon %}
-			<img src="{{ item.author.icon.url }}" class="user-icon">
+			{% if user.icon %}
+			<img src="{{ user.icon.url }}" class="user-icon">
 			{% else %}
 			<img src="{% static 'images/mikiko.jpg' %}" class="user-miniicon">
 			{% endif%}
