@@ -42,15 +42,18 @@
   textarea:focus {
    background-color: #ffffe0;
   }
+.form1 {
+    display: flex;
+    justify-content: center;
+     align-items: center;
+     background-color: black;
+}
 
  </style>
+<div class="form1">
  <form action="{% url 'cosmicsns:tweet' %}" method="post">
   {% csrf_token %}
 
-
- <h1>問い合わせ入力フォーム</h1>
- <p>　以下のフォームに問い合わせ内容を入力してください</p>
- <button type="reset" class="btn btn--white btn--cubic btn--shadow" >リセット</button>
 
  <table>
     <tr>
@@ -61,4 +64,5 @@
  </table>
  <button type="submit" class="btn btn--white btn--cubic btn--shadow">送信する</button>
  </form>
+</div>
 {% endblock %}
