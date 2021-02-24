@@ -18,7 +18,8 @@ class PostsList(LoginRequiredMixin,ListView):
         object_list = object_list.order_by('postedtime')
         object_list = object_list.reverse()
         return object_list
-class TweetView(CreateView):
+
+class TweetView(LoginRequiredMixin, CreateView):
     model = Posts
     fields = ('message',)
     template_name = 'cosmicsns/tweet.html'
