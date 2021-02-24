@@ -48,8 +48,12 @@
      align-items: center;
      background-color: #dcdcdc;
 }
-
+.back{
+     font-size: 50px; 
+ }
  </style>
+
+ <p class="back"><a href="{% url 'cosmicsns:list' %}">←</a></p>
 <div class="form1">
  <form action="{% url 'cosmicsns:tweet' %}" method="post">
   {% csrf_token %}
