@@ -162,8 +162,7 @@
 	textarea{
     	 resize: none;
     	 width:100%;
-	 padding: 8px;
- 	 line-height: 20px;
+	height:13em;
  	}
  		 textarea:focus {
 	   		background-color: #ffffe0;
@@ -185,18 +184,7 @@
 			{% endif%}
 			<span style="font-style: italic">{{ user.username }}</span> としてログインしています</p>
 <br>
- <p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">投稿する</a></p>
-<script>
-$(function() {
-  var $textarea = $('#textarea');
-  var lineHeight = parseInt($textarea.css('lineHeight'));
-  $textarea.on('input', function(evt) {
-    var lines = ($(this).val() + '\n').match(/\n/g).length;
-    $(this).height(lineHeight * lines);
-  });
-  console.log($textarea)
-});
-</script>
+
 <table class="table">
 	<thead class="thead-dark">
 		<tr>
