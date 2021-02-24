@@ -69,17 +69,28 @@
 			-webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
 			box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
 		}
+		.back{
+        font-size: 50px; 
+        }
 	</style>
 </head>
 
  <h3>ユーザー情報変更画面</h3>
+ <p class="back"><a href="{% url 'cosmicsns:list' %}">←</a></p>
  <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-        {{ form.as_p }}
-    <p><input type="submit"/></p>
+        <p>現在のユーザー名　：{{ form.username }}</p>
+        <p>現在のプロフィール：{{ form.introduce }}</p>
+        <p>現在のアイコン　　：
+        	{% if user.icon %}
+			<img src="{{ user.icon.url }}" class="user-icon">
+			{% else %}
+			<a>現在何も設定されていません</a>
+			{% endif %}
+			</p>
+			<p>{{ form.icon }}</p>
+    <button type="submit"class="btn btn--white btn--cubic btn--shadow">保存する</button>
  </form>
-<ul>
-<li><a href="{% url 'cosmicsns:list' %}">一覧へ戻る</a></li>
-</ul>
+
  
 {% endblock %}
