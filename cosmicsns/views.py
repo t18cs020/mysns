@@ -39,6 +39,12 @@ class UserEditView(LoginRequiredMixin,UpdateView):
     fields = ('username', 'introduce', 'icon')
     success_url = reverse_lazy("cosmicsns:list")
     
+class UserPostsView(LoginRequiredMixin,ListView):
+    context_object_name = "posts"
+    template_name = "cosmicsns/userposts.html"
+    def get_queryset(self):
+        return Posts.objects.filter(author=self.request.user).order_by('postedtime').reverse()
+    
 class LoginView(LoginView):
     form_class = forms.LoginForm
     template_name = "cosmicsns/login.html"
