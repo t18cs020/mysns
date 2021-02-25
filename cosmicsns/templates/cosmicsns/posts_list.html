@@ -184,12 +184,11 @@
 			{% endif%}
 			<span style="font-style: italic">{{ user.username }}</span> としてログインしています</p>
 <br>
-<p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">投稿する</a></p>
+<p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">Grumble</a></p>
 <table class="table">
 	<thead class="thead-dark">
 		<tr>
 			<th>ユーザー</th>
-			<th></th>
 			<th>投稿</th>
 			<th>投稿日時</th>
 		</tr>
@@ -197,9 +196,7 @@
 	<tbody>
 	{% for item in object_list %}
 		<tr>
-			<td scope="row">{{ item.author.username }}</td>
-			<td scope="row">
-			
+			<td scope="row">{{ item.author.username }}
 			{% if item.author.username == user.username %}
 			<a href="{% url 'cosmicsns:useredit' item.author.pk %}">
 			{% else %}
