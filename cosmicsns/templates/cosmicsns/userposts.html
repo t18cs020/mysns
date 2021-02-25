@@ -180,19 +180,26 @@
 		    border: none;
 			-webkit-box-sizing:border-box;
 			}
-		.user-icon {
-	    height: 80px;
-    	width: 80px;
+	.user-icon {
+	height: 150px;
+    	width: 150px;
     	object-fit: cover;
     	border-radius: 50%;
     	border: 1.5px solid #eee;
 		}
+	 .user-icon2 {
+	height: 80px;
+    	width: 80px;
+    	object-fit: cover;
+    	border-radius: 50%;
+    	border: 1.5px solid #eee;
+	}
 	</style>
 	<p class="back"><a href="{% url 'cosmicsns:list' %}">←</a></p>
  	<p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">Grumble</a></p>
 	<div class="user-icon">
 			{% if user.icon %}
-			<img src="{{ user.icon.url }}">
+			<img src="{{ user.icon.url }}" class="user-icon">
 			{% else %}
 			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon">
 			{% endif %}
@@ -215,9 +222,9 @@
 			<td scope="row">{{ item.author.username }}
 			
 			{% if item.author.icon %}
-			<img src="{{ item.author.icon.url }}" class="user-icon">
+			<img src="{{ item.author.icon.url }}" class="user-icon2">
 			{% else %}
-			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon">
+			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon2">
 			{% endif %}
 			</td>
 			<td><textarea readonly>{{ item.message }}</textarea></td>
