@@ -192,7 +192,7 @@
  	<p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">Grumble</a></p>
 	<div class="user-icon">
 			{% if user.icon %}
-			<img src="{{ user.icon.url }}" class="user-icon">
+			<img src="{{ user.icon.url }}">
 			{% else %}
 			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon">
 			{% endif %}
