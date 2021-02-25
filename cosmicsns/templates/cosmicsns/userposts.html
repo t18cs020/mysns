@@ -144,22 +144,28 @@
     
       .username{
         text-align: center;
+        font-size: 100px; 
+            display: inline;
         }
-        .user-miniicon {
-	    height: 40px;
-    	width: 40px;
-    	object-fit: cover;
-    	border-radius: 50%;
-    	border: 1.5px solid #eee;
-		}        
+        
         .user-icon {
-	    height: 80px;
-    	width: 80px;
+	    height: 150px;
+    	width: 150px;
     	object-fit: cover;
     	border-radius: 50%;
     	border: 1.5px solid #eee;
+    	display: inline;
 		}
-		textarea{
+		
+		.userintro{
+        font-size: 20px;
+        text-align: center;
+        }
+        
+		.back{
+        font-size: 50px; 
+        }
+        textarea{
     	 resize: none;
     	 width:100%;
 		height:8em;
@@ -174,18 +180,28 @@
 		    border: none;
 			-webkit-box-sizing:border-box;
 			}
+		.user-icon {
+	    height: 80px;
+    	width: 80px;
+    	object-fit: cover;
+    	border-radius: 50%;
+    	border: 1.5px solid #eee;
+		}
 	</style>
-<br>	
-<p style="font-size:30px;text-align:center;" >現在<a href="{% url 'cosmicsns:useredit' user.pk %}">
+	<p class="back"><a href="{% url 'cosmicsns:list' %}">←</a></p>
+ 	<p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">Grumble</a></p>
+	<div class="user-icon">
 			{% if user.icon %}
 			<img src="{{ user.icon.url }}" class="user-icon">
 			{% else %}
-			<img src="{% static 'images/mikiko.jpg' %}" class="user-miniicon">
-			{% endif%}</a>
-			<span style="font-style: italic">{{ user.username }}</span> としてログインしています</p>
-<br>
- <p><a href="{% url 'cosmicsns:tweet' %}" class="border_spread_btn">Grumble</a></p>
-<table class="table">
+			<img src="{% static 'images/mikiko.jpg' %}" class="user-icon">
+			{% endif %}
+	</div>
+	<div class="username">{{ user.username }}</div>
+	{% if user.introduce %}
+	<div class="userintro">{{ user.introduce }}</div>
+	{% endif %}
+	<table class="table">
 	<thead class="thead-dark">
 		<tr>
 			<th>ユーザー</th>
@@ -194,15 +210,9 @@
 		</tr>
 	</thead>
 	<tbody>
-	{% for item in object_list %}
+	{% for item in posts %}
 		<tr>
 			<td scope="row">{{ item.author.username }}
-			
-			{% if item.author.username == user.username %}
-			<a href="{% url 'cosmicsns:userposts' item.author.pk %}">
-			{% else %}
-			<a href="{% url 'cosmicsns:userinfo' item.author.pk %}">
-			{% endif %}
 			
 			{% if item.author.icon %}
 			<img src="{{ item.author.icon.url }}" class="user-icon">
@@ -215,6 +225,7 @@
 		</tr>
 	{% endfor %}
 	</tbody>
+</table>
 </table>
  <p align="right"><a href="{% url 'cosmicsns:logout' %}" class="border_spread_btn">ログアウト</a></p>
 {% endblock %}

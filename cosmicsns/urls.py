@@ -9,4 +9,5 @@ urlpatterns = [
     path('tweet/', views.TweetView.as_view(),name="tweet"),
     path('userinfo/<int:pk>', views.UserInfoView.as_view(),name='userinfo'),
     path('useredit/<int:pk>', views.UserEditView.as_view(),name='useredit'),
+    path('userposts/<int:pk>', views.UserPostsView.as_view(),name='userposts'),
 ]
